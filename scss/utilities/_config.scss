@@ -1,0 +1,64 @@
+//================================
+// 					COLORS
+//================================
+$primary-color: #070707;
+$secondary-color: #711918;
+
+$gold-color: #DDBD72;
+$paper-color: #F0F0F0;
+
+
+//================================
+//   BREAKPOINTS MEDIA QUERIES
+//================================
+$mobile-first: 480px;
+$half-medium: 640px;
+$medium-screen: 768px;
+$large-screen: 960px;
+
+$tablet-1024: new-breakpoint(max-width 1024px);
+$tablet-768: new-breakpoint(max-width 768px);
+$tablet-640: new-breakpoint(max-width 640px);
+$mobile: new-breakpoint(max-width 480px);
+
+$max-width: 1000px;
+
+
+//================================
+// 				COLOR PALETTE
+//================================
+$palette: (
+	primary: (
+		xxx-light: lighten($primary-color, 40%),
+		xx-light : lighten($primary-color, 32%),
+		x-light  : lighten($primary-color, 16%),
+		light 	 : lighten($primary-color, 8%),
+		base 	 : $primary-color,
+		dark 	 : darken($primary-color, 8%),
+		x-dark 	 : darken($primary-color, 16%)
+	),
+	secondary: (
+		x-light : lighten($secondary-color, 16%),
+		light 	: lighten($secondary-color, 8%),
+		base 	  : $secondary-color,
+		dark 	  : darken($secondary-color, 8%)
+	),
+  gold: (
+    light 	 : lighten($gold-color, 8%),
+    base 	   : $gold-color,
+    dark 	 : darken($gold-color, 8%)
+  ),
+  paper: (
+    light 	 : lighten($paper-color, 8%),
+    base 	   : $paper-color,
+    dark 	 : darken($paper-color, 8%)
+  )
+);
+
+//================================
+//       SOCIAL COLORS
+//================================
+$social-colors: (
+  facebook : #00599A,
+  twitter : #00ACDF
+);

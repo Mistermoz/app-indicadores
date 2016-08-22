@@ -1,0 +1,6 @@
+//==================================
+// CALL THE PALETTE MAP: PAL fn
+//==================================
+@function pal($pal-key, $shade: 'base') {
+	@return map-get(map-get($palette, $pal-key), $shade);
+}

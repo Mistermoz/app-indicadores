@@ -1,0 +1,12 @@
+/assets/css/*
+/assets/js/*
+/assets/files/*
+/assets/fonts/fontawesome-webfont.*
+/libs/*
+/node_modules/*
+/.sass-cache/*
+assets/img/spritesheet.png
+spritesheet.png
+npm-debug.log
+_sprites.scss
+.DS_Store
