@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app', [ 'ngRoute', 'ui.bootstrap' ])
+    .module('app', [ 'ngRoute', 'ui.bootstrap', 'nvd3'])
     .config(function ($routeProvider) {
       $routeProvider
         .when('/', {

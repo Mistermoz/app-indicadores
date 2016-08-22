@@ -9,6 +9,7 @@
     "restangular": "~1.4.0",
     "bourbon": "~4.2.0",
     "neat": "~1.7.1",
-    "ngAnimate": "*"
+    "ngAnimate": "*",
+    "angular-nvd3": "^1.0.9"
   }
 }

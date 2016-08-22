@@ -27,7 +27,10 @@ module.exports = function (grunt) {
         'libs/angular-bootstrap/ui-bootstrap.min.js',
         'libs/restangular/dist/restangular.min.js',
         'libs/lodash/dist/lodash.min.js',
-        'libs/angular-animate/angular-animate.min.js'
+        'libs/angular-animate/angular-animate.min.js',
+        'libs/d3/d3.js',
+        'libs/nvd3/nv.d3.js',
+        'libs/angular-nvd3/dist/angular-nvd3.js'
       ],
       css: [
         'libs/font-awesome/css/font-awesome.min.css'
