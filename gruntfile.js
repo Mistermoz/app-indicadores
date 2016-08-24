@@ -29,11 +29,12 @@ module.exports = function (grunt) {
         'libs/lodash/dist/lodash.min.js',
         'libs/angular-animate/angular-animate.min.js',
         'libs/d3/d3.js',
-        'libs/nvd3/nv.d3.js',
+        'libs/nvd3/build/nv.d3.js',
         'libs/angular-nvd3/dist/angular-nvd3.js'
       ],
       css: [
-        'libs/font-awesome/css/font-awesome.min.css'
+        'libs/font-awesome/css/font-awesome.min.css',
+        'libs/nvd3/build/nv.d3.min.css'
       ]
     },
 
