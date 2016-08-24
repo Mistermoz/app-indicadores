@@ -1,1 +1,25 @@
-<h1>{{ home.title }}</h1>
+<div class="content home">
+	<h1>Indicadores Ecónomicos Chilenos</h1>
+
+	<div class="box-buttons" ng-class="{show: !home.loading}">
+		<button ng-repeat="button in home.ind" ng-click="home.showChart(home.data[$index][0].key);" ng-class="{current: home.chartOpen == home.data[$index][0].key}">{{ home.data[$index][0].key}}</button>
+	</div>
+
+	<div class="box-charts">
+		<div class="chart {{ home.data[$index][0].key}}" ng-repeat="indicador in home.ind" ng-class="{show: home.chartOpen == home.data[$index][0].key}">
+			<nvd3 options="home.options[$index]" data="home.data[$index]"></nvd3>
+		</div>	
+	</div>
+
+	<div class="loader" ng-class="{hide: !home.loading}">
+	  <div class="dot"></div>
+	  <div class="dot"></div>
+	  <div class="dot"></div>
+	  <div class="dot"></div>
+	  <div class="dot"></div>
+	  <div class="dot"></div>
+	  <div class="dot"></div>
+	  <div class="dot"></div>
+	</div>
+</div>
+
