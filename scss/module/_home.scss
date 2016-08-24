@@ -1,0 +1,91 @@
+.home {
+	font-family: 'Verdana';
+	padding-top: 30px;
+
+	h1 {
+		color: #3d42a9;
+		font-size: 30px;
+		margin-bottom: 40px;
+		text-align: center;
+		text-transform: uppercase;
+	}
+
+	h2 {
+		font-weight: bold;
+		text-transform: uppercase;
+		text-align: center;
+	}
+
+	.box-buttons {
+		margin-bottom: 50px;
+		@include transform(scale(0,0));
+		@include transition(transform 300ms);
+		text-align: center;
+
+		button {
+			background: #3d42a9;
+			border: 1px solid #3d42a9;
+			border-radius: 10px 0px 10px;
+			color: #fff;
+			cursor: pointer;
+			display: inline-block;
+			font-size: 20px;
+			margin-right: 2.5%;
+			padding: 20px 0px;
+			text-transform: uppercase;
+			@include transition(color 250ms, background 250ms, border-radius 250ms);
+			width: 18%;
+
+			&:hover, &.current {
+				background: #fff;
+				border-radius: 0px 10px 0px;
+				color: #3d42a9;
+			}
+
+			&:last-child {
+				margin-right: 0px;
+			}
+		}
+
+		&.show {
+			@include transform(scale(1,1));
+		}
+	}
+
+	.box-charts {
+		height: 480px;
+		position: relative;
+		overflow: hidden;
+		width: 100%;
+		z-index: 2;
+	}
+
+	.chart {
+		left: 50%;
+		margin-left: -450px;
+		opacity: 0;
+		position: absolute;
+		top: 30px;
+		@include transition(top 800ms, opacity 500ms ease-in-out);
+
+		&.show {
+			opacity: 1;
+			top: 0px;
+		}
+	}
+
+	.loader {
+		opacity: 1;
+		@include transition(opacity 300ms);
+		z-index: 1;
+
+		&.hide {
+			opacity: 0;
+		}
+	}
+
+	&.content {
+		margin: 0 auto;
+		width: 940px;
+	}
+}
