@@ -53,11 +53,16 @@
 	}
 
 	.box-charts {
-		height: 480px;
+		height: 0px;
 		position: relative;
 		overflow: hidden;
+		@include transition(height 100ms);
 		width: 100%;
 		z-index: 2;
+
+		&.open {
+			height: 480px;
+		}
 	}
 
 	.chart {
