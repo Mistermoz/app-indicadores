@@ -3,6 +3,7 @@
 
   angular.module('app')
     .constant('myConfig', {
-    	'indicators': ['dolar', 'euro', 'uf', 'ipc', 'utm']
+    	'indicators': ['dolar', 'euro', 'uf', 'ipc', 'utm'],
+    	'emailTo': 'claudiodonosoc@gmail.com'
     });
 })();

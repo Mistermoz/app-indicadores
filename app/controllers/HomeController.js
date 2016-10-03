@@ -3,12 +3,14 @@
 
   angular.module('app').controller('HomeController', HomeController);
 
-  function HomeController(IndicatorService, myConfig, $scope) {
+  function HomeController(IndicatorService, myConfig, $scope, $rootScope , $timeout, $http) {
     var vm = this;
 
     vm.ind = myConfig.indicators;
 
     vm.loading = false;
+
+    vm.loadMessage = false;
 
     vm.chartOpen = '';
 
@@ -65,9 +67,9 @@
             },
             noData: 'Cargando...'
 	    }
-	};
+		};
 
-	vm.options = [];
+		vm.options = [];
 
     vm.getIndicators = function () {
     	vm.loading = true;
@@ -145,33 +147,96 @@
 	    );
     };
 
+    vm.openContact = function () {
+    	if($rootScope.contactOpen) {
+    		$rootScope.overlayReady = false;
+				
+				$timeout(function () {
+					$rootScope.contactOpen = false;
+				}, 400);
+    	}else {
+    		$rootScope.contactOpen = true;
+
+    		$timeout(function () {
+					$rootScope.overlayReady = true;
+				}, 100);
+    	}
+    };
+
+    vm.submit = function(form) {
+  		vm.messages = '';
+
+		  if (form.$invalid) {
+		    return;
+		  }
+
+		  // Default values for the request.
+		  var config = {
+		    params : {
+		    	'callback': 'JSON_CALLBACK',
+		    	'emailTo': myConfig.emailTo,
+		      'name' : $scope.name,
+		      'email' : $scope.email,
+		      'comments' : $scope.comments,
+		    },
+		  };
+
+		  // Perform JSONP request.
+		  var $promise = $http.jsonp('assets/other/send.php', config)
+		    .success(function(data, status, headers, config) {
+		      if (data.status == '202') {
+		        $scope.name = null;
+		        $scope.email = null;
+		        $scope.comments = null;
+		        vm.messages = 'Tus comentarios fueron enviados exitósamente!';
+		        vm.loadMessage = true;
+		      } else {
+		        $scope.messages = 'Oops, hemos recibido su comentario, pero ha habido un error, intente nuevamente.';
+		        vm.loadMessage = true;
+		        console.log(data);
+		      }
+		    })
+		    .error(function(data, status, headers, config) {
+		      vm.messages = 'Hay un error de conexión. Intente nuevamente, más tarde.';
+		      vm.loadMessage = true;
+		      console.log(data);
+		    })
+		    .finally(function() {
+		      // Hide status messages after three seconds.
+		      $timeout(function() {
+		        vm.messages = null;
+		        vm.openContact();
+		      }, 3000);
+		    });
+		};
+
     vm.showChart = function (key) {
     	vm.chartOpen = key;
     };
 
     vm.sort = function (obj) {
     	var listOrder = obj.slice(0);
-		listOrder.sort(function(a,b) {
+			listOrder.sort(function(a,b) {
 		    return a.label - b.label;
-		});
+			});
 
-		return listOrder;
+			return listOrder;
     };
 
-	vm.init = function() {
-		for(var i = 0; i < myConfig.indicators.length; i++) {
-			var a = [{
-		    'key': myConfig.indicators[i],
-		    'values': []
-			}];
-			vm.data.push(a);
+		vm.init = function() {
+			for(var i = 0; i < myConfig.indicators.length; i++) {
+				var a = [{
+			    'key': myConfig.indicators[i],
+			    'values': []
+				}];
+				vm.data.push(a);
 
-			vm.options[i] = angular.copy(vm.option);
-		}
+				vm.options[i] = angular.copy(vm.option);
+			}
 
-		vm.getIndicators();
-	};
+			vm.getIndicators();
+		};
 
-	vm.init();
+		vm.init();
   }
 })();
